@@ -146,7 +146,7 @@ function editorHostMethods(host: VSCodeVisualEditorHost): Record<string, JsonRpc
     [VSC_VEH_ReopenSourceMode]: () => host.reopenSourceMode(),
     [VSC_VEH_OnEditorReady]: () => host.onEditorReady(),
     [VSC_VEH_OnEditorUpdated]: args => host.onEditorUpdated(args[0]),
-    [VSC_VEH_OnEditorStateChanged]: args => host.onEditorStateChanged(args[0]),
+    [VSC_VEH_OnEditorStateChanged]: args => host.onEditorStateChanged(args[0], args[1]),
     [VSC_VEH_FlushEditorUpdates]: () => host.flushEditorUpdates(),
     [VSC_VEH_SaveDocument]: () => host.saveDocument(),
     [VSC_VEH_RenderDocument]: () => host.renderDocument(),

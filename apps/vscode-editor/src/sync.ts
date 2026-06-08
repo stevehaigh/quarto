@@ -182,7 +182,7 @@ export async function syncEditorToHost(
             
           // visual editor => text editor (just send the state, host will call back for markdown)
           editor.subscribe(UpdateEvent, () => host.onEditorUpdated(editor.getStateJson()));
-          editor.subscribe(StateChangeEvent, () => host.onEditorStateChanged(editor.getEditorSourcePos())); 
+          editor.subscribe(StateChangeEvent, () => host.onEditorStateChanged(editor.getEditorSourcePos(), editor.getSelectedText()));
             
 
           // return canonical markdown
@@ -351,7 +351,7 @@ function editorJsonRpcContainer(request: JsonRpcRequestTransport) : VSCodeVisual
     reopenSourceMode: () => request(VSC_VEH_ReopenSourceMode, []),
     onEditorReady: () => request(VSC_VEH_OnEditorReady, []),
     onEditorUpdated: (state: unknown) => request(VSC_VEH_OnEditorUpdated, [state]),
-    onEditorStateChanged: (sourcePos: SourcePos) => request(VSC_VEH_OnEditorStateChanged, [sourcePos]),
+    onEditorStateChanged: (sourcePos: SourcePos, selectedText: string) => request(VSC_VEH_OnEditorStateChanged, [sourcePos, selectedText]),
     flushEditorUpdates: () => request(VSC_VEH_FlushEditorUpdates, []),
     saveDocument: () => request(VSC_VEH_SaveDocument, []),
     renderDocument: () => request(VSC_VEH_RenderDocument, []),

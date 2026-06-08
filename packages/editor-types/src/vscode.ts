@@ -80,7 +80,7 @@ export interface VSCodeVisualEditorHost extends EditorDisplay, EditorUIImageReso
   reopenSourceMode: () => Promise<void>;
   onEditorReady: () => Promise<void>; 
   onEditorUpdated: (state: unknown) => Promise<void>;
-  onEditorStateChanged: (sourcePos: SourcePos) => Promise<void>;
+  onEditorStateChanged: (sourcePos: SourcePos, selectedText: string) => Promise<void>;
   flushEditorUpdates: () => Promise<void>;
   saveDocument: () => Promise<void>;
   renderDocument: () => Promise<void>;
