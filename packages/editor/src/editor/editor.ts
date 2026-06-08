@@ -796,7 +796,8 @@ export class Editor  {
   public getSelectedText(): string {
     const { from, to } = this.state.selection;
     if (from === to) return '';
-    return this.state.doc.textBetween(from, to, '\n\n', '');
+    // join blocks with blank lines; preserve hard_break as a newline but omit other leaf nodes
+    return this.state.doc.textBetween(from, to, '\n\n', leaf => leaf.type.name === 'hard_break' ? '\n' : '');
   }
 
   public replaceSelection(value: string): void {

@@ -107,7 +107,7 @@ export function activateEditor(
     {
       id: 'quarto.editor.getSelectedText',
       async execute() {
-        const editor = VisualEditorProvider.activeEditor(true);
+        const editor = VisualEditorProvider.activeEditor();
         if (editor) {
           return await editor.getSelectedText();
         }
