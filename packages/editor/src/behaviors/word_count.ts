@@ -132,6 +132,8 @@ function countWords(doc: ProsemirrorNode, from: number, to: number, includeCode:
       const start = Math.max(from, pos);
       const end = Math.min(to, pos + node.nodeSize);
       text += node.text!.slice(start - pos, end - pos);
+    } else if (node.type.name === 'hard_break') {
+      text += ' '; // keep words separated across hard line breaks
     } else if (node.isBlock) {
       text += ' '; // keep words in adjacent blocks separate
     }
